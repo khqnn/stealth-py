@@ -113,8 +113,8 @@ from stealth25519.StealthAddress import StealthAddressSigner
 
 privateSpendKeyBytes = bytes.fromhex('da4956d53efc1c48472080ca284948399ef5dcb1feb47ebd5017330ca2416c30')
 privateViewKeyBytes = bytes.fromhex('8cdc2d3879363eff3c187ee494c7154ac63a4b94c1814488fd46c4f2bafc2239')
-R = bytes.fromhex('616fc339399d17f0946035f86fe3d6ba654d1d0a029faad3d48278c18f93b121')
-P = bytes.fromhex('0435a7ae757a08a28fd4d70a85e67ba3feed7b677f519d133d54a5c57680b3e2')
+R = bytes.fromhex('8a7b9c5bbce1ddb29893bbf96bd3a278d9f4576018c384c1d2f337012607cc1c')
+P = bytes.fromhex('1d3796436ecf22b674f60990945fb09d4a5dd4ad6c16e04dd20ff46e71935fc5')
 
 privateSpendKey = PrivateKey(privateSpendKeyBytes)
 privateViewKey = PrivateKey(privateViewKeyBytes)
@@ -129,7 +129,7 @@ print('Stealth signature: ', sig)
 
 ### Output
 ```plaintext
-Stealth signature:  4d7cbb8a1861c0d82ff8867a0003f068d67f399fdf96279d928e69e34429b6b3d99cf3989226a1e6890a387d6bf7849e7e6c4fd01216474a75695c2f7698f00b
+Stealth signature:  56dcf17a9fd91b7d3d0dffc7ea86fd1cb1dda94caff964c2533c63ecd52166377684fa60f2cfe5258f9e5c8247db4e5003a73c1d0fbd42c56f31a7b996089404
 ```
 
 ### Signature Verification
