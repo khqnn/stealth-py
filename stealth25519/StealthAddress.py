@@ -1,6 +1,8 @@
-from ed25519 import *
-from ed25519 import q, G, _sign
+from stealth25519.ed25519 import *
+from stealth25519.ed25519 import G, _sign
 import random
+
+p, q = get25519Params()
 
 class PublicKey:
     def __init__(self, publicBytes = None):

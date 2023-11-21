@@ -4,6 +4,8 @@ import hashlib
 p = 2**255 - 19
 q = 2**252 + 27742317777372353535851937790883648493
 
+def get25519Params():
+    return (p, q)
 
 def modp_inv(x):
     return pow(x, p-2, p)
