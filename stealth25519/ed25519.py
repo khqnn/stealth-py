@@ -1,5 +1,6 @@
-import hashlib
+# RFC8032: https://datatracker.ietf.org/doc/html/rfc8032
 
+import hashlib
 
 p = 2**255 - 19
 q = 2**252 + 27742317777372353535851937790883648493
