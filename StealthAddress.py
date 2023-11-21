@@ -43,6 +43,7 @@ class StealthAddress:
         self.Rs = R
         self.Ps = P
         self.R = point_decompress(R) # ed25519
+        self.address = R + P
     
     def __str__(self):
         return f'R: {self.Rs.hex()}\nP: {self.Ps.hex()}'
