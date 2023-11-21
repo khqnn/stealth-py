@@ -4,8 +4,6 @@ from StealthAddress import PrivateKey, PublicKey, StealthAddress, StealthAddress
 if __name__=="__main__": 
     # Load private key from any library and get public key from private key
 
-    from StealthAddress import PrivateKey
-
     private_spend_key = ed25519.Ed25519PrivateKey.generate()
     private_view_key = ed25519.Ed25519PrivateKey.generate()
 
