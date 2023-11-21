@@ -59,8 +59,8 @@ privateViewKey = PrivateKey(privateViewKeyBytes)
 msg = b'somedata'
 stealthAddress = StealthAddress(R, P)
 stealthAddressSigner = StealthAddressSigner(privateSpendKey, privateViewKey)
-sig = stealthAddressSigner.sign(stealthAddress, msg).hex()
-print('Stealth signature: ', sig)
+sig = stealthAddressSigner.sign(stealthAddress, msg)
+print('Stealth signature: ', sig.hex())
 
 
 # Verify stealth address signature using standard Ed25519 algorithm
