@@ -3,10 +3,10 @@ from stealth25519.StealthAddress import PrivateKey, PublicKey, StealthAddress, S
 
 # generate or load private key from cryptography or any other library as bytes array
 
-private_spend_key = ed25519.Ed25519PrivateKey.generate()
+private_spend_key = '6e2096a4aeb83752be2c2072d26d8c526c9bb7c5957289fc6feb85bd7da8dbf3'
 private_view_key = ed25519.Ed25519PrivateKey.generate()
 
-privateSpendKey = PrivateKey(private_spend_key.private_bytes_raw())
+privateSpendKey = PrivateKey(bytes.fromhex( private_spend_key))
 privateViewKey = PrivateKey(private_view_key.private_bytes_raw())
 
 publicSpendKey = privateSpendKey.generatePublicKey()
