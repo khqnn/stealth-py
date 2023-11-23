@@ -1,5 +1,10 @@
 from cryptography.hazmat.primitives.asymmetric import ed25519
-from stealth25519.StealthAddress import PrivateKey, PublicKey, StealthAddress, StealthAddressGenerator, StealthAddressVerifier, StealthAddressSigner
+
+from stealth25519.key import PrivateKey, PublicKey
+from stealth25519.address import StealthAddress
+from stealth25519.generator import StealthAddressGenerator
+from stealth25519.verifier import StealthAddressVerifier
+from stealth25519.signer import StealthAddressSigner
 
 # generate or load private key from cryptography or any other library as bytes array
 
