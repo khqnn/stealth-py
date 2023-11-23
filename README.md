@@ -21,7 +21,7 @@ pip install stealth25519
 
 ```python
 from cryptography.hazmat.primitives.asymmetric import ed25519
-from stealth25519.StealthAddress import PrivateKey, PublicKey
+from stealth25519.key import PrivateKey, PublicKey
 
 # Generate or load private key from cryptography or any other library as bytes array
 private_spend_key_ = '6e2096a4aeb83752be2c2072d26d8c526c9bb7c5957289fc6feb85bd7da8dbf3'
@@ -55,7 +55,7 @@ Public view key:    874e1029399477a9537b5015580ff8cc4701ecd8ced251fbe75ba7b9cc3f
 ### Generating a Stealth Address
 
 ```python
-from stealth25519.StealthAddress import StealthAddressGenerator
+from stealth25519.generator import StealthAddressGenerator
 
 public_spend_key_bytes = bytes.fromhex('18a498c68461e39dd180745e5aa1faacbc9b8a5f74a7eb25b5038b66db0a4af6')
 public_view_key_bytes = bytes.fromhex('b52c33b513c26e17b7105cb1ed1c7022ef00f3967aaac0ff8bd9d15ccee4d94e')
@@ -81,7 +81,7 @@ P: 6f6e46287d47112a82511c2de36ef006f1f7a7b9899645267029df9c6fb510eb
 ### Verifying a Stealth Address
 
 ```python
-from stealth25519.StealthAddress import StealthAddressVerifier
+from stealth25519.verifier import StealthAddressVerifier
 
 private_view_key_bytes = bytes.fromhex('8cdc2d3879363eff3c187ee494c7154ac63a4b94c1814488fd46c4f2bafc2239')
 public_spend_key_bytes = bytes.fromhex('18a498c68461e39dd180745e5aa1faacbc9b8a5f74a7eb25b5038b66db0a4af6')
@@ -109,7 +109,7 @@ Stealth address verified:  True
 ### Signing a Stealth Address
 
 ```python
-from stealth25519.StealthAddress import StealthAddressSigner
+from stealth25519.signer import StealthAddressSigner
 
 private_spend_key_bytes = bytes.fromhex('da4956d53efc1c48472080ca284948399ef5dcb1feb47ebd5017330ca2416c30')
 private_view_key_bytes = bytes.fromhex('8cdc2d3879363eff3c187ee494c7154ac63a4b94c1814488fd46c4f2bafc2239')
