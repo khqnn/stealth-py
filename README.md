@@ -163,3 +163,38 @@ print('Signature verification result:', verification_result)
 ```plaintext
 Signature verification result: True
 ```
+
+### Generate and verify stealth address using custom hash function (Keccak256)
+This Python code snippet demonstrates the generation and verification of stealth addresses using a custom hash function, specifically Keccak256. 
+
+```python
+from Crypto.Hash import keccak
+
+def keccak256(s):
+    keccak_hash = keccak.new(digest_bits=256)
+    keccak_hash.update(s)
+    return keccak_hash.digest()
+
+# Generating and verifying stealth addresses with keccak
+
+sa_generator = StealthAddressGenerator(public_spend_key, public_view_key, keccak256)
+stealth_address = sa_generator.generate()
+print('Stealth Address\n', stealth_address)
+
+sa_verifier = StealthAddressVerifier(private_view_key, public_spend_key, keccak256)
+verified = sa_verifier.verify(stealth_address)
+print('Stealth Address Verified: ', verified)
+```
+
+Note: The code assumes that the necessary variables (public_spend_key, public_view_key, private_view_key) are defined before this snippet is executed.
+
+### Output
+```plaintext
+Stealth Address
+R: c4904e7df617dd93a02375771b76270950b22eec968ad82bc903f06bf8508c3c
+P: 14ec8b2ae19fa492423e8402a63a3fd48326864c01409e9001af0066f532aeca
+Stealth Address Verified:  True
+```
+
+## Dependencies
+Crypto libraries (Ensure they are installed using `pip install pycryptodome cryptography`)

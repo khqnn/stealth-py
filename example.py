@@ -1,11 +1,19 @@
 import hashlib
 from cryptography.hazmat.primitives.asymmetric import ed25519
+from Crypto.Hash import keccak
 
 from stealth25519.key import PrivateKey, PublicKey
 from stealth25519.address import StealthAddress
 from stealth25519.generator import StealthAddressGenerator
 from stealth25519.verifier import StealthAddressVerifier
 from stealth25519.signer import StealthAddressSigner
+
+
+def keccak256(s):
+    keccak_hash = keccak.new(digest_bits=256)
+    keccak_hash.update(s)
+    return keccak_hash.digest()
+
 
 
 def sha512(s):
@@ -102,3 +110,14 @@ signature_bytes = bytes.fromhex(signature_hex)
 
 verification_result = verify_ed25519_signature(public_key_bytes, signature_bytes, message)
 print('Signature verification result:', verification_result)
+
+
+# Generating and verifying stealth addresses with keccak
+
+sa_generator = StealthAddressGenerator(public_spend_key, public_view_key, keccak256)
+stealth_address = sa_generator.generate()
+print('Stealth Address\n', stealth_address)
+
+sa_verifier = StealthAddressVerifier(private_view_key, public_spend_key, keccak256)
+verified = sa_verifier.verify(stealth_address)
+print('Stealth Address Verified: ', verified)
