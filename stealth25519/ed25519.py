@@ -25,6 +25,9 @@ def sha256(s):
 def sha512_modq(s):
     return int.from_bytes(sha512(s), "little") % q
 
+def bytes_modq(b):
+    return int.from_bytes(b, 'little') % q
+
 
 def point_add(P, Q):
     A, B = (P[1]-P[0]) * (Q[1]-Q[0]) % p, (P[1]+P[0]) * (Q[1]+Q[0]) % p

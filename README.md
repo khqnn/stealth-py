@@ -63,7 +63,7 @@ public_view_key_bytes = bytes.fromhex('b52c33b513c26e17b7105cb1ed1c7022ef00f3967
 public_spend_key = PublicKey(public_spend_key_bytes)
 public_view_key = PublicKey(public_view_key_bytes)
 
-generator = StealthAddressGenerator(public_spend_key, public_view_key)
+generator = StealthAddressGenerator(public_spend_key, public_view_key, hash_function = sha512)
 stealth_address = generator.generate()
 print('Stealth Address\n', stealth_address)
 ```
@@ -74,8 +74,8 @@ After generating the stealth address the output would be:
 
 ```plaintext
 Stealth Address
-R: 140a81dee57fa89e92f6b66df2b33867dc0a4469fdf006249c868e7bd98f65e9
-P: 6f6e46287d47112a82511c2de36ef006f1f7a7b9899645267029df9c6fb510eb
+R: f694a725eade1f938797a87ba09d505f4be4358c1e8a865a3ef0ae202bb8b827
+P: 573fff985d6407e747a845ff9f6d245b65b68beb3738837d207943f7697a6338
 ```
 
 ### Verifying a Stealth Address
@@ -85,14 +85,14 @@ from stealth25519.verifier import StealthAddressVerifier
 
 private_view_key_bytes = bytes.fromhex('8cdc2d3879363eff3c187ee494c7154ac63a4b94c1814488fd46c4f2bafc2239')
 public_spend_key_bytes = bytes.fromhex('18a498c68461e39dd180745e5aa1faacbc9b8a5f74a7eb25b5038b66db0a4af6')
-R = bytes.fromhex('72e46affe404d301b2546ac420a209929e98120526b677b9576fd4f687691b51')
-P = bytes.fromhex('f5ec778dfcf57e8b736729efdcbb458110e814c8bec4ef5667e2d7571cbbc8c4')
+R = bytes.fromhex('f694a725eade1f938797a87ba09d505f4be4358c1e8a865a3ef0ae202bb8b827')
+P = bytes.fromhex('573fff985d6407e747a845ff9f6d245b65b68beb3738837d207943f7697a6338')
 
 private_view_key = PrivateKey(private_view_key_bytes)
 public_spend_key = PublicKey(public_spend_key_bytes)
 
 stealth_address = StealthAddress(R, P)
-verifier = StealthAddressVerifier(private_view_key, public_spend_key)
+verifier = StealthAddressVerifier(private_view_key, public_spend_key, hash_function = sha512)
 results = verifier.verify(stealth_address)
 
 print('Stealth address verified: ', results)
@@ -113,15 +113,15 @@ from stealth25519.signer import StealthAddressSigner
 
 private_spend_key_bytes = bytes.fromhex('da4956d53efc1c48472080ca284948399ef5dcb1feb47ebd5017330ca2416c30')
 private_view_key_bytes = bytes.fromhex('8cdc2d3879363eff3c187ee494c7154ac63a4b94c1814488fd46c4f2bafc2239')
-R = bytes.fromhex('8a7b9c5bbce1ddb29893bbf96bd3a278d9f4576018c384c1d2f337012607cc1c')
-P = bytes.fromhex('1d3796436ecf22b674f60990945fb09d4a5dd4ad6c16e04dd20ff46e71935fc5')
+R = bytes.fromhex('f694a725eade1f938797a87ba09d505f4be4358c1e8a865a3ef0ae202bb8b827')
+P = bytes.fromhex('573fff985d6407e747a845ff9f6d245b65b68beb3738837d207943f7697a6338')
 
 private_spend_key = PrivateKey(private_spend_key_bytes)
 private_view_key = PrivateKey(private_view_key_bytes)
 
 msg = b'somedata'
 stealth_address = StealthAddress(R, P)
-signer = StealthAddressSigner(private_spend_key, private_view_key)
+signer = StealthAddressSigner(private_spend_key, private_view_key, hash_function = sha512)
 sig = signer.sign(stealth_address, msg)
 print('Stealth signature: ', sig.hex())
 

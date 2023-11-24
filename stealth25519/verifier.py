@@ -1,4 +1,4 @@
-from stealth25519.ed25519 import get25519Params, secret_expand, point_compress, sha512_modq, point_add, point_mul
+from stealth25519.ed25519 import get25519Params, secret_expand, point_compress, sha512, bytes_modq, point_add, point_mul
 
 p, q, G = get25519Params()
 
@@ -16,14 +16,16 @@ class StealthAddressVerifier:
         verify(stealthAddress): Verify the given Stealth Address.
     """
 
-    def __init__(self, privateViewKey, publicSpendKey):
+    def __init__(self, privateViewKey, publicSpendKey, hash_function = sha512):
         """
         Initialize a StealthAddressVerifier instance.
 
         Args:
             privateViewKey (PrivateKey): The private view key.
             publicSpendKey (PublicKey): The public spend key.
+            hash_function (function): A function that used to generate a hash. This function should get bytes input and return hash bytes. 
         """
+        self.hash_function = hash_function
 
         self.privateViewKey = privateViewKey
         self.publicSpendKey = publicSpendKey
@@ -41,7 +43,8 @@ class StealthAddressVerifier:
 
         Rs, Ps = stealthAddress.Rs, stealthAddress.Ps
         f = point_compress(point_mul(self.vs, stealthAddress.R)) # ed25519
-        h_ = sha512_modq(f) # ed25519
+        h_ = self.hash_function(f) # ed25519
+        h_ = bytes_modq(h_)
         P_ = point_add(point_mul(h_, G), self.B) # ed25519
         Ps_ = point_compress(P_) # ed25519
         return Ps==Ps_
